@@ -15,12 +15,31 @@ export const useUserStore = defineStore(
       roles: [],
       permissions: []
     })
+
+    const setInfo = (value: UserInfo) => (info.value = value)
+
+    const clearInfo = () => {
+      info.value = {
+        username: '',
+        roles: [],
+        permissions: []
+      }
+    }
+
+    const reset = () => {
+      clearToken()
+      clearInfo()
+    }
+
     return {
       token,
       info,
       setToken,
       clearToken,
-      hasToken
+      hasToken,
+      setInfo,
+      clearInfo,
+      reset
     }
   },
   {
