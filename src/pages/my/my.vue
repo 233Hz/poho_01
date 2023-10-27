@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { useUserStore } from '@/store'
 import { useRouter } from 'uni-mini-router'
 
+const userStore = useUserStore()
 const router = useRouter()
 const { safeAreaInsets } = uni.getSystemInfoSync()
 </script>
@@ -24,10 +26,17 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
         <view class="list__group__item" @tap="() => router.push({ name: 'demand' })">资源需求</view>
       </view>
     </view>
-    <view class="list">
-      <view class="list__group">
-        <view class="list__group__item" @tap="() => router.push({ name: 'login' })">退出登入</view>
-      </view>
+    <view class="list__group">
+      <view
+        class="list__group__item"
+        @tap="
+          () => {
+            userStore.clearToken()
+            router.replaceAll({ name: 'login' })
+          }
+        "
+        >退出登入</view
+      >
     </view>
   </view>
 </template>

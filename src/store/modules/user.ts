@@ -5,7 +5,7 @@ import { ref } from 'vue'
 export const useUserStore = defineStore(
   'user',
   () => {
-    const token = ref<string | undefined>('asdas')
+    const token = ref<string>()
     const setToken = (value: string) => (token.value = value)
     const clearToken = () => (token.value = void 0)
     const hasToken = () => !!token.value
